@@ -53,29 +53,32 @@ The Virtual Classroom Manager is a console-based application designed to manage 
 
 ## Project Directory Structure
 /VirtualClassroomManager
-/src
-/main
-/java
-/com
-/edtech
-Main.java
-/exception
-CustomException.java
-ClassroomNotFoundException.java
-/model
-Assignment.java
-Classroom.java
-Student.java
-/service
-AssignmentService.java
-ClassroomService.java
-StudentService.java
-/util
-LoggingUtility.java
-/resources
-log4j2.xml
-pom.xml
-README.md
+│
+├── /src
+│   ├── /main
+│   │   ├── /java
+│   │   │   └── /com
+│   │   │       └── /edtech
+│   │   │           ├── Main.java
+│   │   │           ├── /exception
+│   │   │           │   ├── CustomException.java
+│   │   │           │   └── ClassroomNotFoundException.java
+│   │   │           ├── /model
+│   │   │           │   ├── Assignment.java
+│   │   │           │   ├── Classroom.java
+│   │   │           │   └── Student.java
+│   │   │           ├── /service
+│   │   │           │   ├── AssignmentService.java
+│   │   │           │   ├── ClassroomService.java
+│   │   │           │   └── StudentService.java
+│   │   │           └── /util
+│   │   │               ├── LoggingUtility.java
+│   │   │               └── HelpUtils.java
+│   │   └── /resources
+│   │       └── log4j2.xml
+│
+├── pom.xml
+└── README.md
 
 
 ## Usage
