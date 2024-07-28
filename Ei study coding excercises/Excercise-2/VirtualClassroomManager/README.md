@@ -80,9 +80,6 @@ VirtualClassroomManager\
 │
 ├── pom.xml
 └── README.md
-```
-
-
 
 ## Usage
 ### Available Commands
