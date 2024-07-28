@@ -53,7 +53,7 @@ The Virtual Classroom Manager is a console-based application designed to manage 
 
 ## Project Directory Structure
 
-'''bash
+```bash
 VirtualClassroomManager
   |
   |-- src
@@ -90,7 +90,7 @@ VirtualClassroomManager
   |    |    |    |-- log4j2.xml
   |-- pom.xml
   |-- README.md
-'''
+```
 
 ## Usage
 ### Available Commands
