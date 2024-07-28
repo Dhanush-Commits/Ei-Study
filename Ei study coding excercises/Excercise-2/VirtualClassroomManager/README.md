@@ -51,7 +51,9 @@ The Virtual Classroom Manager is a console-based application designed to manage 
     java -jar virtual-classroom-manager.jar
     ```
 
-## Project Directory Structure
+Project Directory Structure
+============================
+
 /VirtualClassroomManager
 │
 ├── /src
@@ -79,6 +81,7 @@ The Virtual Classroom Manager is a console-based application designed to manage 
 │
 ├── pom.xml
 └── README.md
+
 
 
 ## Usage
