@@ -17,7 +17,7 @@ public class HelpUtils {
         System.out.println("  remove_student [Student ID] - Removes a student.");
         System.out.println("  remove_assignment [Assignment Title] - Removes an assignment.");
         System.out.println("Additional Features:");
-        System.out.println("  schedule_assignment [Assignment Title] [Class Name] [Due Date] - Schedules an assignment for a classroom.");
+        System.out.println("  schedule_assignment [Assignment Title] [Class Name] [Due Date YYYY-MM-DD] - Schedules an assignment for a classroom.");
         System.out.println("  grade_assignment [Assignment Title] [Student ID] [Grade] - Grades an assignment for a student.");
         System.out.println("  search_student [Student ID] - Searches for a student by ID.");
         System.out.println("  help - Displays this help message.");
