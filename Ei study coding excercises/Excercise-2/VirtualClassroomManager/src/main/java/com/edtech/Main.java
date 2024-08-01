@@ -5,6 +5,8 @@ import com.edtech.service.*;
 import com.edtech.util.HelpUtils;
 import com.edtech.util.LoggerUtil;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,7 +18,6 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String command;
         HelpUtils.displayHelp();
         readCommand(scanner);
     }
@@ -33,7 +34,7 @@ public class Main {
         } catch (Exception e) {
             System.out.println("An error occurred: " + e.getMessage());
         }
-        readCommand(scanner); // Recursively read the next command
+        readCommand(scanner);
     }
 
     private static void processCommand(String command) {
@@ -86,11 +87,20 @@ public class Main {
     }
 
     private static void addClassroom(String[] parts) {
+        List<Classroom> classrooms = classroomService.getAllClassrooms();
         if (parts.length < 2) {
             System.out.println("Usage: add_classroom [Class Name]");
             return;
         }
+        
         String className = parts[1];
+        
+        for (Classroom class1 : classrooms) {
+            if (class1.getName().equalsIgnoreCase(className)) {
+                LoggerUtil.log("Classroom already exists: " + className);
+                return;
+            }
+        }
         Classroom classroom = new Classroom(className);
         classroomService.addClassroom(classroom);
         System.out.println("Classroom added: " + className);
@@ -127,19 +137,32 @@ public class Main {
 
     private static void scheduleAssignment(String[] parts) {
         if (parts.length < 2) {
-            System.out.println("Usage: schedule_assignment [Assignment Title] [Class Name] [Due Date]");
+            System.out.println("Usage: schedule_assignment [Assignment Title] [Class Name] [Due Date (yyyy-MM-dd)]");
             return;
         }
 
         String[] assignmentDetails = parts[1].split(" ", 3);
         if (assignmentDetails.length < 3) {
-            System.out.println("Usage: schedule_assignment [Assignment Title] [Class Name] [Due Date]");
+            System.out.println("Usage: schedule_assignment [Assignment Title] [Class Name] [Due Date (yyyy-MM-dd)]");
             return;
         }
 
         String assignmentTitle = assignmentDetails[0];
         String className = assignmentDetails[1];
-        String dueDate = assignmentDetails[2];
+        String dueDateString = assignmentDetails[2];
+
+        LocalDate dueDate;
+        try {
+            dueDate = LocalDate.parse(dueDateString);
+        } catch (DateTimeParseException e) {
+            System.out.println("Invalid date format. Please use yyyy-MM-dd.");
+            return;
+        }
+
+        if (dueDate.isBefore(LocalDate.now()) || dueDate.isEqual(LocalDate.now())) {
+            System.out.println("Due date must be in the future and not today.");
+            return;
+        }
 
         Classroom classroom = classroomService.getClassroomByName(className);
         if (classroom == null) {
@@ -147,7 +170,7 @@ public class Main {
             return;
         }
 
-        Assignment assignment = new Assignment(assignmentTitle, classroom, dueDate);
+        Assignment assignment = new Assignment(assignmentTitle, classroom, dueDate.toString());
         assignmentService.addAssignment(assignment);
         System.out.println("Assignment scheduled: " + assignmentTitle + " for " + className);
         LoggerUtil.log("Assignment scheduled: " + assignmentTitle + " for " + className);
