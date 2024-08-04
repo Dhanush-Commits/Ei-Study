@@ -22,4 +22,4 @@ The `ChainOfResponsibilityDemo.java` class demonstrates how requests are passed 
 To run the demo:
 1. Navigate to the directory `DesignPatterns\Behavioral\ChainOfResponsibility`.
 2. Compile the Java files: `javac *.java`.
-3. Run the demo: `java ChainOfResponsibilityDemo`.
+3. Run the demo: `java ChainOfResponsibilityDemo`
